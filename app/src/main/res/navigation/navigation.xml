@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/splashScreen2">
+
+    <fragment
+        android:id="@+id/splashScreen2"
+        android:name="com.example.antinorms.View.Fragments.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreen_to_loginFragment"
+            app:destination="@id/loginFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.antinorms.View.Fragments.LoginFragment"
+        android:label="LoginFragment">
+
+        <action
+            android:id="@+id/action_loginFragment_to_dev_projects_fragment2"
+            app:destination="@id/dev_projects_fragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/dev_projects_fragment2"
+        android:name="com.example.antinorms.View.Fragments.dev_projects_fragment"
+        android:label="dev_projects_fragment" />
+</navigation>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="projects">
+        <item>Ticket simply</item>
+        <item>LBY</item>
+        <item>Max</item>
+        <item>EneReady</item>
+    </string-array>
+
+    <string-array name="Developers">
+        <item>Ankit Sharma</item>
+        <item>Sudhanshu Shukla </item>
+        <item>Akshay Garg</item>
+        <item>Gaurav Saini</item>
+    </string-array>
+</resources>
