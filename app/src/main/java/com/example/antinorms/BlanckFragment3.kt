@@ -1,0 +1,92 @@
+package com.example.antinorms
+
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class BlankFragment3 : Fragment() {
+
+    private var rvData2: RecyclerView?= null
+    private var progressBar2: ProgressBar?= null
+    private var llParent2: LinearLayout?= null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+
+        var view = inflater.inflate(R.layout.fragment_blank2, container, false)
+        rvData2 = view.findViewById(R.id.recyclerView2)
+        progressBar2 = view.findViewById(R.id.progresBar2)
+        llParent2 = view.findViewById(R.id.llParent2)
+        getMyData2()
+
+        return view
+    }
+    private fun getMyData2() {
+
+        rvData2?.visibility = View.GONE
+        progressBar2?.visibility = View.VISIBLE
+        val retrofitData = RetrofitService.networkCall().getData2()
+
+        retrofitData.enqueue(object : Callback<projectprofile?> {
+            override fun onResponse(
+                call: Call<projectprofile?>,
+                response: Response<projectprofile?>
+            ) {
+                rvData2?.visibility = View.VISIBLE
+                progressBar2?.visibility = View.GONE
+
+                if(response.isSuccessful){
+                    /*val adapter = response.body()?.let {it-> MyListAdapter(requireActivity(),it.data) }
+                    rvData?.adapter = adapter
+*/                 Log.d("DATA!", "onResponse: ${response.message()}")
+                    setUpAdapter(response.body()!!.profile)
+                }else{
+                    Log.d("DATA!", "onResponse: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<projectprofile?>, t: Throwable) {
+                Log.d("MainActivity", "onFailure: " + t.message)
+                progressBar2?.visibility = View.GONE
+                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
+
+
+    }
+
+    private fun setUpAdapter( list : ArrayList<Profile>) {
+        val headerList = mutableListOf<String>()
+
+        headerList.add("Project name ")
+        headerList.add("Developers")
+        headerList.add("Client name")
+
+
+        val layoutManager = LinearLayoutManager(requireActivity(),
+            LinearLayoutManager.VERTICAL,false)
+        rvData2?.layoutManager = layoutManager
+        val myListAdapter = MyDataChildAdapter3(requireContext(),list,0)
+        rvData2?.adapter = myListAdapter
+
+    }
+
+
+
+}
