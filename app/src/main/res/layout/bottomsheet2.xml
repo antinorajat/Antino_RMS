@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/round_corner"
+    android:backgroundTint="#E5E7F3"
     android:padding="8dp">
 
     <LinearLayout
@@ -59,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Status"
+                android:textSize="15sp"
                 android:layout_marginTop="40dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:textSize="15sp"
                     android:enabled="false"
                     android:singleLine="true"
                     android:textStyle="bold"/>
@@ -97,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="15sp"
                 android:text="Tech stack"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:enabled="false"
+                    android:textSize="15sp"
                     android:singleLine="true"
                     android:textStyle="bold"/>
 
@@ -135,6 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="15sp"
                 android:text="Project name"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -154,6 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:textSize="15sp"
                     android:singleLine="true"
                     android:enabled="false"
                     android:textStyle="bold"/>
@@ -178,6 +185,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="15sp"
                 android:text="Client name"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -197,6 +205,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:textSize="15sp"
                     android:singleLine="true"
                     android:enabled="false"
                     android:textStyle="bold"/>
@@ -221,6 +230,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="15sp"
                 android:text="Client meeting(days and time)"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -240,6 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:textSize="15sp"
                     android:enabled="false"
                     android:singleLine="true"
                     android:textStyle="bold"/>
@@ -262,6 +273,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="15sp"
                 android:text="Internal meeting(days and time)"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -272,6 +284,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
+
                 app:layout_constraintBottom_toBottomOf="@+id/internal_meeting_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/internal_meeting_tv"
@@ -282,6 +295,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:enabled="false"
+                    android:textSize="15sp"
                     android:singleLine="true"
                     android:textStyle="bold"/>
 
@@ -304,6 +318,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="15sp"
                 android:text="Client Point Of Contact"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -324,31 +339,53 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:enabled="false"
+                    android:textSize="15sp"
                     android:singleLine="true"
                     android:textStyle="bold"/>
-
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/start_date_parent_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
 
 
 
+            <TextView
+                android:id="@+id/start_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Start date"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                app:layout_constraintBottom_toBottomOf="@+id/start_date_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/start_date_tv"
+                app:layout_constraintTop_toTopOf="@+id/start_date_tv" >
+                <EditText
+                    android:id="@+id/start_date_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:enabled="false"
+                    android:textSize="15sp"
+                    android:singleLine="true"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>

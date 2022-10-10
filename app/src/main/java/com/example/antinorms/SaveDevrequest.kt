@@ -13,7 +13,7 @@ data class SaveDevrequest(
     val phoneNumber: String?=null,
     val projects: String? = null,
     val reportingPm: String?=null,
-    val role: String?=null,
+    val role: String?,
     val seniority: String?=null,
     val techStack: String?=null,
     val workingExperienceInMonths: Int?=null

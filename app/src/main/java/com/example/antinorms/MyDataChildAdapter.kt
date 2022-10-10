@@ -60,9 +60,21 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
             val experience=bottomSheetDialog.findViewById<EditText>(R.id.workExp_tv2)
             experience?.setText(myListData.workingExperienceInMonths.toString())
             val mangerB = bottomSheetDialog.findViewById<EditText>(R.id.manager_tv2)
-            mangerB?.setText(myListData.reportingPm?.name ?: "")
+            mangerB?.setText(myListData.reportingPm?.name?: "")
             val joiningB = bottomSheetDialog.findViewById<EditText>(R.id.joining_tv2)
-            joiningB?.setText(myListData.joiningDate)
+            joiningB?.setText(myListData.joiningDate.toString().split("T")[0])
+
+            val roleB=bottomSheetDialog.findViewById<EditText>(R.id.role_tv2)
+            roleB?.setText(myListData.Role?.name)
+
+            val designationB=bottomSheetDialog.findViewById<EditText>(R.id.designation_tv2)
+            designationB?.setText(myListData.designation?.name)
+
+
+
+            val techB=bottomSheetDialog.findViewById<EditText>(R.id.tech_tv2)
+            techB?.setText(myListData.techStack?.name ?: "")
+
 
             val confirmButton = bottomSheetDialog.findViewById<TextView>(R.id.confirm)
             val editButton = bottomSheetDialog.findViewById<TextView>(R.id.edit)
@@ -78,6 +90,7 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
                 experience?.isEnabled = false
                 mangerB?.isEnabled = false
                 joiningB?.isEnabled = false
+                designationB?.isEnabled = false
 
 
                 try {
@@ -89,7 +102,9 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
                             seniority = seniority?.text.toString(),
                             phoneNumber = phoneNo?.text.toString(),
                             emergencyContactNumber = emergency_no?.text.toString(),
-                            workingExperienceInMonths = experience?.text.toString().toInt()
+                            workingExperienceInMonths = experience?.text.toString().toInt(),
+                            role = roleB?.text.toString(),
+                            designation = designationB?.text.toString()
                         )
                     )
                         .enqueue(object : retrofit2.Callback<SaveDevRes> {
@@ -133,6 +148,8 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
                 experience?.isEnabled = true
                 mangerB?.isEnabled = true
                 joiningB?.isEnabled = true
+                designationB?.isEnabled=true
+                roleB?.isEnabled = true
             }
 
             bottomSheetDialog.show()

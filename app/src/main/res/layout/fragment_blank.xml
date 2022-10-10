@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,9 +14,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:paddingVertical="10dp"
+        android:paddingVertical="15dp"
         android:id="@+id/llParent2"
-        android:background="#90EE90"
+        android:background="#49C5B6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +29,7 @@
             android:gravity="center"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:text="Developers ID"
             android:layout_marginLeft="10dp"/>
 
@@ -38,7 +40,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:text="Full name"
             android:layout_marginLeft="10dp"/>
 
@@ -49,7 +51,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:text="Availability"
             android:layout_marginLeft="10dp"/>
 
@@ -59,14 +61,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
-        tools:listitem="@layout/row"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llParent2"
         android:layout_height="wrap_content"
-        android:visibility="visible"/>
+        android:visibility="visible"
+
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llParent2"
+        tools:listitem="@layout/row" />
 
     <ProgressBar
         android:visibility="gone"
@@ -79,4 +82,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 

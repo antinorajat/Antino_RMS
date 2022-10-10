@@ -11,11 +11,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.antinorms.listeners.OnItemClickListener
+import com.example.antinorms.models.projectResp.Profile
+
+
+import com.example.antinorms.models.projectResp.ProjectResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BlankFragment3 : Fragment() {
+class BlankFragment3 : Fragment(), OnItemClickListener {
 
     private var rvData2: RecyclerView?= null
     private var progressBar2: ProgressBar?= null
@@ -39,12 +44,13 @@ class BlankFragment3 : Fragment() {
 
         rvData2?.visibility = View.GONE
         progressBar2?.visibility = View.VISIBLE
-        val retrofitData = RetrofitService.networkCall().getData2()
-
-        retrofitData.enqueue(object : Callback<projectprofile?> {
+        val retrofitData =
+            DashboardActivity.token?.let {
+                RetrofitService.networkCall().getData2("Bearer $it") }
+        retrofitData?.enqueue(object : Callback<ProjectResponse?> {
             override fun onResponse(
-                call: Call<projectprofile?>,
-                response: Response<projectprofile?>
+                call: Call<ProjectResponse?>,
+                response: Response<ProjectResponse?>
             ) {
                 rvData2?.visibility = View.VISIBLE
                 progressBar2?.visibility = View.GONE
@@ -53,13 +59,13 @@ class BlankFragment3 : Fragment() {
                     /*val adapter = response.body()?.let {it-> MyListAdapter(requireActivity(),it.data) }
                     rvData?.adapter = adapter
 */                 Log.d("DATA!", "onResponse: ${response.message()}")
-                    setUpAdapter(response.body()!!.profile)
+                    setUpAdapter(response.body()?.profile)
                 }else{
                     Log.d("DATA!", "onResponse: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<projectprofile?>, t: Throwable) {
+            override fun onFailure(call: Call<ProjectResponse?>, t: Throwable) {
                 Log.d("MainActivity", "onFailure: " + t.message)
                 progressBar2?.visibility = View.GONE
                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
@@ -71,7 +77,7 @@ class BlankFragment3 : Fragment() {
 
     }
 
-    private fun setUpAdapter( list : ArrayList<Profile>) {
+    private fun setUpAdapter(list: List<Profile>?) {
         val headerList = mutableListOf<String>()
 
         headerList.add("Project name ")
@@ -82,11 +88,15 @@ class BlankFragment3 : Fragment() {
         val layoutManager = LinearLayoutManager(requireActivity(),
             LinearLayoutManager.VERTICAL,false)
         rvData2?.layoutManager = layoutManager
-        val myListAdapter = MyDataChildAdapter3(requireContext(),list,0)
+        val myListAdapter = list?.let { MyDataChildAdapter2(requireContext(), it,0, this) }
         rvData2?.adapter = myListAdapter
 
     }
 
+    override fun onItemClick(position: Int) {
+
+
+    }
 
 
 }

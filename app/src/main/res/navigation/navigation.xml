@@ -5,16 +5,18 @@
         android:id="@+id/splashScreen2"
         android:name="com.example.antinorms.SplashScreen"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_blank" >
+        tools:layout="@layout/fragment_splash_screen" >
         <action
-            android:id="@+id/action_splashScreen_to_loginFragment"
-            app:destination="@id/loginFragment"/>
+            android:id="@+id/action_splashScreen2_to_fragment_login"
+            app:destination="@id/fragment_login" />
+        <action
+            android:id="@+id/action_splashScreen2_to_fragment_login2"
+            app:destination="@id/fragment_login" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.antinorms.BlankFragment"
-        android:label="LoginFragment">
-
-    </fragment>
+        android:id="@+id/fragment_login"
+        tools:layout="@layout/fragment_login"
+        android:name="com.example.antinorms.fragment_login"
+        android:label="fragment_login" />
 </navigation>
 

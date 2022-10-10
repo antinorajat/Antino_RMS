@@ -1,5 +1,7 @@
 package com.example.antinorms
 
+import com.example.antinorms.models.Role.Role
+import com.example.antinorms.models.project_update.designation
 import com.google.gson.annotations.SerializedName
 
 data class Data(
@@ -20,5 +22,10 @@ data class Data(
     @SerializedName("isAvailable") var isAvailable: Boolean? = null,
     @SerializedName("createdAt") var createdAt: String? = null,
     @SerializedName("updatedAt") var updatedAt: String? = null,
-    @SerializedName("reportingPm") var reportingPm: ReportingPm? = ReportingPm()
-)
+    @SerializedName("reportingPm") var reportingPm: ReportingPm? = ReportingPm(),
+    @SerializedName("role") var Role: Role? = null,
+    @SerializedName("designation") var designation: designation? = null,
+    @SerializedName("techStack") var techStack: TechStack? = null
+
+
+    )

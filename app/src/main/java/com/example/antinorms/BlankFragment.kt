@@ -1,5 +1,7 @@
 package com.example.antinorms
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +14,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antinorms.RetrofitService.client
+import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -41,13 +44,15 @@ class BlankFragment : Fragment() {
 
         return view
     }
-    private fun getMyData() {
 
+    private fun getMyData() {
         rvData?.visibility = View.GONE
         progressBar?.visibility = View.VISIBLE
-        val retrofitData = RetrofitService.networkCall().getData()
+        val retrofitData =
+                         DashboardActivity.token?.let {
+                    RetrofitService.networkCall().getData("Bearer $it") }
 
-        retrofitData.enqueue(object :Callback<MyDataClassForApi?>{
+        retrofitData?.enqueue(object :Callback<MyDataClassForApi?>{
             override fun onResponse(
                 call: Call<MyDataClassForApi?>,
                 response: Response<MyDataClassForApi?>
@@ -59,6 +64,7 @@ class BlankFragment : Fragment() {
                     /*val adapter = response.body()?.let {it-> MyListAdapter(requireActivity(),it.data) }
                     rvData?.adapter = adapter
 */
+                    Log.e("response","${response.body()?.data}")
                     setUpAdapter(response.body()!!.data)
                 }
             }
@@ -76,6 +82,9 @@ class BlankFragment : Fragment() {
     }
 
     private fun setUpAdapter( list : List<Data>) {
+
+        Log.d("BlankFragment", "setUpAdapter: ${Gson().toJson(list)}")
+
         val headerList = mutableListOf<String>()
 
         headerList.add("Developer ID")
