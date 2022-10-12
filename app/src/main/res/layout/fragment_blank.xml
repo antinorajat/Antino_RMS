@@ -1,59 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".BlankFragment">
 
+
+    <RelativeLayout
+        android:id="@+id/searchBar"
+        app:layout_constraintEnd_toStartOf="@+id/imageView1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        >
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/img_search"
+            android:background="@null"
+            android:hint="Search"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text=""
+            android:textAllCaps="false"
+            android:textColor="#4A4A4A"
+            android:textColorHint="#4A4A4A" />
+
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_search_24"
+            app:tint="#7E7E8C"
+            tools:ignore="VectorDrawableCompat" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_baseline_add_circle_24"
+        app:layout_constraintBottom_toBottomOf="@+id/searchBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchBar" />
+
+
     <LinearLayout
+        android:id="@+id/llParent2"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#49C5B6"
         android:orientation="horizontal"
         android:paddingVertical="15dp"
-        android:id="@+id/llParent2"
-        android:background="#49C5B6"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="wrap_content">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar">
 
         <TextView
             android:id="@+id/txt1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="16sp"
+            android:gravity="center"
             android:text="Developers ID"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:gravity="center"
             android:text="Full name"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:gravity="center"
             android:text="Availability"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
@@ -72,15 +120,14 @@
         tools:listitem="@layout/row" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/progresBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

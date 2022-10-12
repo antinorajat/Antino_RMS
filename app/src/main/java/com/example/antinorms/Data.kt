@@ -1,6 +1,9 @@
 package com.example.antinorms
 
+import androidx.constraintlayout.widget.Group
 import com.example.antinorms.models.Role.Role
+import com.example.antinorms.models.group.group
+import com.example.antinorms.models.mentor.mentor
 import com.example.antinorms.models.project_update.designation
 import com.google.gson.annotations.SerializedName
 
@@ -25,7 +28,10 @@ data class Data(
     @SerializedName("reportingPm") var reportingPm: ReportingPm? = ReportingPm(),
     @SerializedName("role") var Role: Role? = null,
     @SerializedName("designation") var designation: designation? = null,
-    @SerializedName("techStack") var techStack: TechStack? = null
+    @SerializedName("techStack") var techStack: TechStack? = null,
+    @SerializedName("group") var group: group? = null,
+
+
 
 
     )

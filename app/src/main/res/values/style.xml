@@ -27,6 +27,13 @@
     </style>
 
 
+    <style name="EditTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#344767</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">#000000</item>
+    </style>
+
+
 
     <style name="simpletooltip_default" parent="@android:style/TextAppearance.Medium"></style>
 

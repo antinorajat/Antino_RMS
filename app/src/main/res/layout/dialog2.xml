@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/round_corner"
+    android:padding="10dp"
+    android:layout_margin="4dp">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Project"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="#000000"/>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Project Name">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" /></com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt1"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Client Name">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit1"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" /></com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt3"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Estimate End Date">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit2"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt4"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Internal Meeting Days">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit3"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" /></com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt5"
+                style="@style/EditTextInputLayoutStyle"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Internal Meeting Time">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit4"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" /></com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt6"
+                style="@style/EditTextInputLayoutStyle"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Client Meeting Days">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit5"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" /></com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt7"
+                style="@style/EditTextInputLayoutStyle"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Client Meeting Time">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit6"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" /></com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt8"
+                style="@style/EditTextInputLayoutStyle"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Tech Stack">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit7"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" /></com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt9"
+                style="@style/EditTextInputLayoutStyle"                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Project Type">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit8"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" /></com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt10"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Status">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit9"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt11"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Demo Urls">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit10"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt12"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Client Contact Details">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit11"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_continue2"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20sp"
+                android:backgroundTint="#49C5B6"
+
+                android:text="Add Project"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:cornerRadius="10dp" />
+
+
+
+
+
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

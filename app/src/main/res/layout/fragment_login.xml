@@ -52,6 +52,8 @@
             android:text="Please Login"
             android:textSize="24sp"
             android:textStyle="bold"
+
+
             app:layout_constraintStart_toStartOf="@+id/linearLayout2"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 

@@ -16,6 +16,9 @@ import com.example.antinorms.models.projectResp.Profile
 
 
 import com.example.antinorms.models.projectResp.ProjectResponse
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.fragment_blank2.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +39,19 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
         rvData2 = view.findViewById(R.id.recyclerView2)
         progressBar2 = view.findViewById(R.id.progresBar2)
         llParent2 = view.findViewById(R.id.llParent2)
+
+
+        view.imageView1.setOnClickListener{
+            val bottomSheetDialog = context?.let { it1 -> BottomSheetDialog(it1,R.style.CustomBottomSheetDialogTheme) }
+            bottomSheetDialog?.setContentView(R.layout.dialog2)
+            bottomSheetDialog?.behavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+            bottomSheetDialog?.show()
+
+
+
+
+    }
+
         getMyData2()
 
         return view

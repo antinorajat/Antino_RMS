@@ -14,23 +14,28 @@
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/drawable/ic_person_background.xml" value="0.1" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/drawable/ic_person_foreground.xml" value="0.1" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/drawable/round_corner.xml" value="0.146" />
-        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/activity_dashboard.xml" value="0.11" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/font/fonts.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/activity_main.xml" value="0.14" />
-        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/bottomsheet.xml" value="0.2" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/bottomsheet.xml" value="0.18" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/bottomsheet2.xml" value="0.1921875" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/button_sheet.xml" value="0.178125" />
-        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/fragment_blank.xml" value="0.22" />
-        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/fragment_blank2.xml" value="0.25" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/details.xml" value="0.19114583333333332" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/dialog.xml" value="0.1" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/dialog2.xml" value="0.1921875" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/fragment_blank.xml" value="0.4522691705790297" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/fragment_blank2.xml" value="0.2" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/fragment_bottom_navigation.xml" value="0.1890625" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/fragment_login.xml" value="0.22" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/fragment_splash_screen.xml" value="0.1921875" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/login_fragment.xml" value="0.25" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/my_list_adapter.xml" value="0.22" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/my_list_adapter2.xml" value="0.1" />
-        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/row.xml" value="0.25" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/row.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/row2.xml" value="0.1921875" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/second.xml" value="0.1921875" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/splash_activity.xml" value="0.1921875" />
+        <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/layout/toolbar.xml" value="0.1921875" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/menu/botton_nav_menu.xml" value="0.18" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/mipmap-anydpi-v26/ic_person.xml" value="0.1" />
         <entry key="..\:/Users/Antino/AndroidStudioProjects/Antinorms/app/src/main/res/mipmap-anydpi-v26/ic_person_round.xml" value="0.1" />

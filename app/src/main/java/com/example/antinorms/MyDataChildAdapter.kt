@@ -15,12 +15,10 @@ import retrofit2.Response
 import java.lang.Exception
 
 
-class MyDataChildAdapter(val context: Context, private val list : List<Data>, val index :Int) :
+class MyDataChildAdapter(val context: Context, val index :Int) :
     RecyclerView.Adapter<MyDataChildAdapter.ViewHolder>() {
 
-
-    private val data  =  MutableLiveData<SaveDevRes>()
-
+    var list : List<Data> = mutableListOf()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -40,6 +38,10 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
         holder.textView1.text = myListData.empId.toString()
         holder.textView2.text = myListData.firstName.toString()+" "+myListData.lastName.toString()
         holder.textView3.text = myListData.isAvailable.toString()
+
+        if (myListData.isAvailable == null){
+            holder.textView3.setText("N/A")
+        }
 
         holder.textView1.setOnClickListener{
             val bottomSheetDialog = BottomSheetDialog(context,R.style.CustomBottomSheetDialogTheme)
@@ -70,10 +72,11 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
             val designationB=bottomSheetDialog.findViewById<EditText>(R.id.designation_tv2)
             designationB?.setText(myListData.designation?.name)
 
-
-
             val techB=bottomSheetDialog.findViewById<EditText>(R.id.tech_tv2)
             techB?.setText(myListData.techStack?.name ?: "")
+
+            val groupB=bottomSheetDialog.findViewById<EditText>(R.id.group_tv2)
+            groupB?.setText(myListData.group?.name)
 
 
             val confirmButton = bottomSheetDialog.findViewById<TextView>(R.id.confirm)
@@ -91,6 +94,8 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
                 mangerB?.isEnabled = false
                 joiningB?.isEnabled = false
                 designationB?.isEnabled = false
+                roleB?.isEnabled = false
+                techB?.isEnabled = false
 
 
                 try {
@@ -105,6 +110,7 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
                             workingExperienceInMonths = experience?.text.toString().toInt(),
                             role = roleB?.text.toString(),
                             designation = designationB?.text.toString()
+
                         )
                     )
                         .enqueue(object : retrofit2.Callback<SaveDevRes> {
@@ -150,6 +156,8 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
                 joiningB?.isEnabled = true
                 designationB?.isEnabled=true
                 roleB?.isEnabled = true
+                techB?.isEnabled = true
+
             }
 
             bottomSheetDialog.show()
@@ -168,7 +176,7 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
             2 ->{
 
 
-                holder.textView1.text = myListData.isAvailable.toString()
+
 
             }
 
@@ -177,6 +185,11 @@ class MyDataChildAdapter(val context: Context, private val list : List<Data>, va
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun addData(serviceList : MutableList<Data>) {
+        list = serviceList
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder( val binding: RowBinding) : RecyclerView.ViewHolder(binding.root) {
