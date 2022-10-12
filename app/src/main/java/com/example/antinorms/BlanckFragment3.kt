@@ -1,7 +1,10 @@
 package com.example.antinorms
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,31 +13,32 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.antinorms.listeners.OnItemClickListener
-import com.example.antinorms.models.Register.registerdata
+
 import com.example.antinorms.models.createproject.createProject
 import com.example.antinorms.models.createproject.createresp
 import com.example.antinorms.models.projectResp.Profile
 
 
 import com.example.antinorms.models.projectResp.ProjectResponse
-import com.example.antinorms.models.registerresp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_blank.view.*
 import kotlinx.android.synthetic.main.fragment_blank2.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
-class BlankFragment3 : Fragment(), OnItemClickListener {
+class BlankFragment3 : Fragment(){
 
-    private var rvData2: RecyclerView?= null
-    private var progressBar2: ProgressBar?= null
-    private var llParent2: LinearLayout?= null
-    private var bottomSheetDialog2 : BottomSheetDialog? = null
+    private var rvData2: RecyclerView? = null
+    private var progressBar2: ProgressBar? = null
+    private var llParent2: LinearLayout? = null
+    private var bottomSheetDialog2: BottomSheetDialog? = null
+    private var searchView1 : EditText? = null
+    var filterdNames1 = mutableListOf<Profile>()
+    var list1 = mutableListOf<Profile>()
+    lateinit var myListAdapter1 : MyDataChildAdapter2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,10 +50,15 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
         rvData2 = view.findViewById(R.id.recyclerView2)
         progressBar2 = view.findViewById(R.id.progresBar2)
         llParent2 = view.findViewById(R.id.llParent2)
+        searchView1 = view.findViewById(R.id.et_search1)
 
 
-        view.imageView2.setOnClickListener{
-            val bottomSheetDialog = context?.let { it1 -> BottomSheetDialog(it1,R.style.CustomBottomSheetDialogTheme) }
+        setSearch1()
+
+
+        view.imageView2.setOnClickListener {
+            val bottomSheetDialog =
+                context?.let { it1 -> BottomSheetDialog(it1, R.style.CustomBottomSheetDialogTheme) }
             bottomSheetDialog?.setContentView(R.layout.dialog2)
             bottomSheetDialog?.behavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
 
@@ -65,24 +74,47 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
             var status = bottomSheetDialog?.findViewById<EditText>(R.id.txt9)
             var demourl = bottomSheetDialog?.findViewById<EditText>(R.id.txt10)
             var clientcontactdetails = bottomSheetDialog?.findViewById<EditText>(R.id.txt11)
+            var startdate = bottomSheetDialog?.findViewById<EditText>(R.id.txt14)
 
-            var  c: Calendar = Calendar.getInstance();
+
+            var c1: Calendar = Calendar.getInstance();
+            var year1 = c1.get(Calendar.YEAR);
+            var month1 = c1.get(Calendar.MONTH);
+            var day1 = c1.get(Calendar.DAY_OF_MONTH)
+            startdate?.keyListener = null
+            startdate?.setOnClickListener {
+
+                val datePickerDialog = DatePickerDialog(
+                    requireContext(),
+                    DatePickerDialog.OnDateSetListener { datePicker, i, i1, i2 ->
+                        var i1 = i1
+                        val date1 = i2.toString() + "/" + ++i1 + "/" + i
+                        startdate.setText(date1)
+                    }, year1, month1, day1
+                )
+                datePickerDialog.show()
+            }
+
+            var c: Calendar = Calendar.getInstance();
             var year = c.get(Calendar.YEAR);
             var month = c.get(Calendar.MONTH);
             var day = c.get(Calendar.DAY_OF_MONTH)
-            estimatedate?.keyListener=null
+            estimatedate?.keyListener = null
             estimatedate?.setOnClickListener {
 
-                val datePickerDialog = DatePickerDialog(requireContext(),
+                val datePickerDialog = DatePickerDialog(
+                    requireContext(),
                     DatePickerDialog.OnDateSetListener { datePicker, i, i1, i2 ->
                         var i1 = i1
                         val date = i2.toString() + "/" + ++i1 + "/" + i
                         estimatedate.setText(date)
                     }, year, month, day
                 )
-                datePickerDialog.show()}
+                datePickerDialog.show()
+            }
 
-            bottomSheetDialog2?.findViewById<Button>(R.id.add_project)?.setOnClickListener {
+            bottomSheetDialog?.findViewById<Button>(R.id.add_project)?.setOnClickListener {
+
                 val createProject = createProject(
                     projectName = projectname?.text.toString(),
                     clientName = clientname?.text.toString(),
@@ -93,7 +125,8 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
                     typeOfProject = prjecttype?.text.toString(),
                     status = status?.text.toString(),
                     demoUrls = demourl?.text.toString(),
-                    clientPointOfContact = clientcontactdetails?.text.toString()
+                    clientPointOfContact = clientcontactdetails?.text.toString(),
+                    startDate = startdate?.text.toString()
 
                 )
                 getData4(createProject)
@@ -105,9 +138,7 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
             bottomSheetDialog?.show()
 
 
-
-
-    }
+        }
 
         getMyData2()
 
@@ -134,14 +165,19 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
                     /*val adapter = response.body()?.let {it-> MyListAdapter(requireActivity(),it.data) }
                     rvData?.adapter = adapter
 */
-                    Toast.makeText(requireActivity(), response.body()?.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), response.body()?.message, Toast.LENGTH_SHORT)
+                        .show()
                     bottomSheetDialog2?.dismiss()
                     getMyData2()
 
                     Log.e("response", "${response.body()?.message}")
 
                 } else {
-                    Toast.makeText(requireContext(), "${response.body().toString()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "${response.body().toString()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -158,31 +194,15 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private fun getMyData2() {
+        list1.clear()
 
         rvData2?.visibility = View.GONE
         progressBar2?.visibility = View.VISIBLE
         val retrofitData =
             DashboardActivity.token?.let {
-                RetrofitService.networkCall().getData2("Bearer $it") }
+                RetrofitService.networkCall().getData2("Bearer $it")
+            }
         retrofitData?.enqueue(object : Callback<ProjectResponse?> {
             override fun onResponse(
                 call: Call<ProjectResponse?>,
@@ -191,12 +211,15 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
                 rvData2?.visibility = View.VISIBLE
                 progressBar2?.visibility = View.GONE
 
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     /*val adapter = response.body()?.let {it-> MyListAdapter(requireActivity(),it.data) }
                     rvData?.adapter = adapter
 */                 Log.d("DATA!", "onResponse: ${response.message()}")
+
                     setUpAdapter(response.body()?.profile)
-                }else{
+                    list1 = response.body()!!.profile.toMutableList()
+                    myListAdapter1.addData2(response.body()!!.profile.toMutableList())
+                } else {
                     Log.d("DATA!", "onResponse: ${response.message()}")
                 }
             }
@@ -221,18 +244,56 @@ class BlankFragment3 : Fragment(), OnItemClickListener {
         headerList.add("Client name")
 
 
-        val layoutManager = LinearLayoutManager(requireActivity(),
-            LinearLayoutManager.VERTICAL,false)
+        val layoutManager = LinearLayoutManager(
+            requireActivity(),
+            LinearLayoutManager.VERTICAL, false
+        )
         rvData2?.layoutManager = layoutManager
-        val myListAdapter = list?.let { MyDataChildAdapter2(requireContext(), it,0, this) }
-        rvData2?.adapter = myListAdapter
+        myListAdapter1 = MyDataChildAdapter2(requireContext(), 0)
+        rvData2?.adapter = myListAdapter1
 
     }
 
-    override fun onItemClick(position: Int) {
+    private fun setSearch1() {
+        searchView1?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {
+                search(s.toString())
+            }
 
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int, count: Int, after: Int
+            ) {
+            }
 
+            override fun onTextChanged(
+                s: CharSequence, start: Int, before: Int, count: Int
+            ) {
+            }
+        })
     }
+
+    @SuppressLint("DefaultLocale")
+    private fun search(text: String) {
+
+        filterdNames1 = mutableListOf()
+        for (s in list1) {
+
+            var temp = s.projectName
+            if (temp.toLowerCase().contains(text.toLowerCase())) {
+                filterdNames1.add(s)
+
+            }
+        }
+
+        if (::myListAdapter1.isInitialized){
+            myListAdapter1.addData2(filterdNames1)
+        }
+    }
+
+
+
+
+
 
 
 }

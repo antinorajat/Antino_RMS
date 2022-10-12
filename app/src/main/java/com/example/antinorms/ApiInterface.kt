@@ -22,6 +22,7 @@ interface ApiInterface {
 
     @PUT("developer/updateProfile/{devId}")
     fun updateDeveloper(
+        @Header("Authorization") token: String,
         @Path("devId") devId: String,
         @Body saveDevrequest: SaveDevrequest
     ): Call<SaveDevRes>
@@ -37,7 +38,9 @@ interface ApiInterface {
 
 
     @PUT("project/api/v1/projects/update")
-    fun updateProjects(@Body updateProjectReq: UpdateProjectReq): Call<UpdateProjecRes>
+    fun updateProjects(
+        @Header("Authorization") token: String,
+        @Body updateProjectReq: UpdateProjectReq): Call<UpdateProjecRes>
 
 
     @POST("/developer/register")

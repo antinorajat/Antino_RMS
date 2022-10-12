@@ -68,6 +68,8 @@ class BlankFragment : Fragment() {
             var MobileNumber = bottomSheetDialog?.findViewById<EditText>(R.id.edit7)
             var emergencyContact = bottomSheetDialog?.findViewById<EditText>(R.id.edit8)
             var antinoId = bottomSheetDialog?.findViewById<EditText>(R.id.edit9)
+            var workingexperincemonth = bottomSheetDialog?.findViewById<EditText>(R.id.edit10)
+
             var  c:Calendar = Calendar.getInstance();
             var year = c.get(Calendar.YEAR);
           var month = c.get(Calendar.MONTH);
@@ -97,7 +99,9 @@ class BlankFragment : Fragment() {
                     techStack = techstack?.text.toString(),
                     phoneNumber = MobileNumber?.text.toString(),
                     emergencyContactNumber = emergencyContact?.text.toString(),
-                    empId = antinoId?.text.toString()
+                    empId = antinoId?.text.toString(),
+                    workingExperienceInMonths = Integer.parseInt(workingexperincemonth?.text.toString())
+
                 )
                 getMyData3(registerdata)
             }

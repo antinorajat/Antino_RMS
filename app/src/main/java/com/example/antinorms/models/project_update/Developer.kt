@@ -24,5 +24,6 @@ data class Developer(
     val seniority: String,
     val techStack: String,
     val updatedAt: String,
-    val workingExperienceInMonths: Int
+    val workingExperienceInMonths: Int,
+    val clientMeetingDaysAndTimings: String
 )

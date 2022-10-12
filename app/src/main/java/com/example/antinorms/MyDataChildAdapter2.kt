@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antinorms.databinding.RowBinding
-import com.example.antinorms.listeners.OnItemClickListener
+
 import com.example.antinorms.models.projectResp.Profile
 import com.example.antinorms.models.updateProjectModel.req.res.UpdateProjectReq
 import com.example.antinorms.models.updateProjectModel.res.UpdateProjecRes
@@ -23,8 +23,10 @@ import com.nhaarman.supertooltips.ToolTipRelativeLayout
 import retrofit2.Response
 
 
-class MyDataChildAdapter2(val context: Context, private val list: List<Profile>, val index: Int, val onItemClickListener: OnItemClickListener) :
+class MyDataChildAdapter2(val context: Context, val index: Int, ) :
     RecyclerView.Adapter<MyDataChildAdapter2.ViewHolder>() {
+
+    var list1 : List<Profile> = mutableListOf()
 
 
     private val data = MutableLiveData<SaveDevRes>()
@@ -40,7 +42,7 @@ class MyDataChildAdapter2(val context: Context, private val list: List<Profile>,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val myListData = list[position]
+        val myListData = list1[position]
 
 
 
@@ -73,6 +75,9 @@ class MyDataChildAdapter2(val context: Context, private val list: List<Profile>,
             val meetingB = bottomSheetDialog2.findViewById<EditText>(R.id.meeting_tv2)
             meetingB?.setText(myListData.clientMeetingDaysAndTimings)
 
+            Log.d("errorw", (myListData).clientMeetingDaysAndTimings)
+
+
             val internalB = bottomSheetDialog2.findViewById<EditText>(R.id.internal_meeting_tv2)
             internalB?.setText(myListData.internalMeetingDaysAndTimings)
 
@@ -86,12 +91,12 @@ class MyDataChildAdapter2(val context: Context, private val list: List<Profile>,
                 bottomSheetDialog2.findViewById<EditText>(R.id.start_date_tv2)
             startdateB?.setText(myListData.startDate)
 
-
-
-
             val estimatedateB =
                 bottomSheetDialog2.findViewById<EditText>(R.id.estimate_end_date_tv2)
-            startdateB?.setText(myListData.estimatedEndDate)
+            estimatedateB?.setText(myListData.estimatedEndDate)
+
+            val projectmanagerB = bottomSheetDialog2.findViewById<EditText>(R.id.project_manager_tv2)
+            projectmanagerB?.setText(myListData.projectManager.name)
 
 
 
@@ -109,21 +114,25 @@ class MyDataChildAdapter2(val context: Context, private val list: List<Profile>,
                 clientcontactB?.isEnabled = false
                 internalB?.isEnabled = false
                 startdateB?.isEnabled = false
-
+                projectmanagerB?.isEnabled = false
+                estimatedateB?.isEnabled = false
 
 
                 try {
-                    retrofitData2.updateProjects(
+                    retrofitData2.updateProjects( "Bearer ${DashboardActivity.token}",
                         updateProjectReq = UpdateProjectReq(
                             id = myListData._id,
                             updateData = com.example.antinorms.models.updateProjectModel.req.UpdateData(
-                                myListData.status,
                                 techStack = myListData.techStack.map { it.name },
                                 typeOfProject = myListData.projectName,
                                 clientName = myListData.clientName,
-//                               clientMeetingDaysAndTimings = myListData.clientMeetingDaysAndTimings,
+                                clientMeetingDaysAndTimings  = myListData.clientMeetingDaysAndTimings,
                                 internalMeetingDaysAndTimings = myListData.internalMeetingDaysAndTimings,
-                                clientPointOfContact = myListData.clientPointOfContact
+                                clientPointOfContact = myListData.clientPointOfContact,
+                                projectmanager = myListData.projectManager.name,
+                                estimatedenddate = myListData.estimatedEndDate,
+                                startdate = myListData.startDate
+
 
                             )
                         )
@@ -168,7 +177,8 @@ class MyDataChildAdapter2(val context: Context, private val list: List<Profile>,
                 internalB?.isEnabled = true
                 clientcontactB?.isEnabled = true
                 startdateB?.isEnabled = true
-
+                projectmanagerB?.isEnabled=true
+                estimatedateB?.isEnabled = true
             }
             bottomSheetDialog2.show()
         }
@@ -244,8 +254,16 @@ class MyDataChildAdapter2(val context: Context, private val list: List<Profile>,
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list1.size
     }
+
+    fun addData2(serviceList : MutableList<Profile>) {
+        list1 = serviceList
+        notifyDataSetChanged()
+    }
+
+
+
 
     inner class ViewHolder(val binding: RowBinding) : RecyclerView.ViewHolder(binding.root) {
 

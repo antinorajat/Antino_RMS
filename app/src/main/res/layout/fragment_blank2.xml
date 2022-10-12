@@ -12,7 +12,7 @@
 
     <RelativeLayout
         android:id="@+id/searchBar1"
-        app:layout_constraintEnd_toStartOf="@+id/imageView1"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="0dp"

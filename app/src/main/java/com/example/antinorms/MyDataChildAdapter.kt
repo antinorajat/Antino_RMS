@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.antinorms.databinding.RowBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
 import retrofit2.Response
 import java.lang.Exception
 
@@ -78,6 +79,14 @@ class MyDataChildAdapter(val context: Context, val index :Int) :
             val groupB=bottomSheetDialog.findViewById<EditText>(R.id.group_tv2)
             groupB?.setText(myListData.group?.name)
 
+            val projectB=bottomSheetDialog.findViewById<EditText>(R.id.project_tv2)
+            projectB?.setText(myListData.projects.toString())
+
+
+//
+//            val billableB=bottomSheetDialog.findViewById<EditText>(R.id.billable_tv12)
+//            billableB?.setText(myListData.)
+
 
             val confirmButton = bottomSheetDialog.findViewById<TextView>(R.id.confirm)
             val editButton = bottomSheetDialog.findViewById<TextView>(R.id.edit)
@@ -96,24 +105,35 @@ class MyDataChildAdapter(val context: Context, val index :Int) :
                 designationB?.isEnabled = false
                 roleB?.isEnabled = false
                 techB?.isEnabled = false
+                 groupB?.isEnabled=false
+                projectB?.isEnabled = false
 
 
+
+
+           val saveDevrequest = SaveDevrequest(firstName = myListData.firstName.toString(),
+               lastName = myListData.lastName.toString(),
+               email = emailB?.text.toString(),
+               phoneNumber = phoneNo?.text.toString(),
+               empId = myListData.empId,
+               emergencyContactNumber = emergency_no?.text.toString(),
+               workingExperienceInMonths = experience?.text.toString().toInt(),
+               role = roleB?.text.toString(),
+               techStack = "",
+               joiningDate = myListData.joiningDate,
+               designation = designationB?.text.toString(),
+              remarks = "",
+               reportingPm =  myListData.reportingPm?.name,
+               project = myListData.projects?.toString()
+           )
+                Log.d("error", Gson().toJson(saveDevrequest))
                 try {
-                    retrofitData.updateDeveloper( devId = myListData.Id!!,
-                        saveDevrequest = SaveDevrequest(
-                            firstName = myListData.firstName.toString(),
-                            lastName = myListData.lastName.toString(),
-                            email = emailB?.text.toString(),
-                            seniority = seniority?.text.toString(),
-                            phoneNumber = phoneNo?.text.toString(),
-                            emergencyContactNumber = emergency_no?.text.toString(),
-                            workingExperienceInMonths = experience?.text.toString().toInt(),
-                            role = roleB?.text.toString(),
-                            designation = designationB?.text.toString()
-
-                        )
-                    )
-                        .enqueue(object : retrofit2.Callback<SaveDevRes> {
+                    val retrofitData =
+                        DashboardActivity.token?.let {
+                            RetrofitService.networkCall().updateDeveloper("Bearer $it",devId = myListData.Id!!,
+                                saveDevrequest)
+                        }
+                    retrofitData?.enqueue(object : retrofit2.Callback<SaveDevRes> {
                             override fun onResponse(
                                 call: retrofit2.Call<SaveDevRes>,
                                 response: Response<SaveDevRes>
@@ -157,6 +177,8 @@ class MyDataChildAdapter(val context: Context, val index :Int) :
                 designationB?.isEnabled=true
                 roleB?.isEnabled = true
                 techB?.isEnabled = true
+                groupB?.isEnabled=true
+                projectB?.isEnabled = true
 
             }
 
@@ -186,6 +208,9 @@ class MyDataChildAdapter(val context: Context, val index :Int) :
     override fun getItemCount(): Int {
         return list.size
     }
+
+
+
 
     fun addData(serviceList : MutableList<Data>) {
         list = serviceList

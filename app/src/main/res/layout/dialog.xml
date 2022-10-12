@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:text="Register Developer"
                 android:textColor="#000000"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
 
@@ -240,6 +240,30 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt11"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="WorkingExp(month/years)"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textCursorDrawable="@null"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/_edt_txt10"
                 style="@style/EditTextInputLayoutStyle"
                 android:layout_width="match_parent"
@@ -261,6 +285,16 @@
                     android:inputType="text"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+
+
+
 
 
             <com.google.android.material.button.MaterialButton

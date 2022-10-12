@@ -41,6 +41,8 @@
                 android:hint="Project Name">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
@@ -60,6 +62,8 @@
                 android:hint="Client Name">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt1"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
@@ -69,6 +73,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/_edt_txt3"
+                android:maxLines="1"
+                android:singleLine="true"
                 style="@style/EditTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,6 +109,8 @@
                 android:hint="Internal Meeting Days and timing">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt3"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
@@ -124,6 +132,8 @@
                 android:hint="Client Meeting Days and Timing">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt5"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
@@ -144,6 +154,8 @@
                 android:hint="Client Meeting Time">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt6"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
@@ -164,6 +176,8 @@
                 android:hint="Tech Stack">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt7"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
@@ -184,6 +198,8 @@
                 android:hint="Project Type">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt8"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
@@ -205,11 +221,43 @@
                 android:hint="Status">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt9"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/_edt_txt14"
+                style="@style/EditTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="Start date">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt14"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:textCursorDrawable="@null"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -226,6 +274,8 @@
                 android:hint="Demo Urls">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt10"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
@@ -251,6 +301,8 @@
                 android:hint="Client Contact Details">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txt11"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:textCursorDrawable="@null"
                     android:layout_height="wrap_content"
