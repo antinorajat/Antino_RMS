@@ -19,6 +19,7 @@ import com.example.antinorms.models.registerresp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.fragment_blank.view.*
 import kotlinx.android.synthetic.main.fragment_blank2.view.*
 import retrofit2.Call
 import retrofit2.Callback

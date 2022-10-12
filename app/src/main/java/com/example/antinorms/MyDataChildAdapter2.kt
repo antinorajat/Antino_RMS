@@ -65,7 +65,7 @@ class MyDataChildAdapter2(val context: Context, private val list: List<Profile>,
             techB?.setText(myListData.techStack[0].name)
 
             val projectB = bottomSheetDialog2.findViewById<EditText>(R.id.project_tv2)
-            projectB?.setText(myListData.projectName)
+            projectB?.setText(myListData.typeOfProject)
 
             val clientB = bottomSheetDialog2.findViewById<EditText>(R.id.client_tv2)
             clientB?.setText(myListData.clientName)
@@ -85,6 +85,13 @@ class MyDataChildAdapter2(val context: Context, private val list: List<Profile>,
             val startdateB =
                 bottomSheetDialog2.findViewById<EditText>(R.id.start_date_tv2)
             startdateB?.setText(myListData.startDate)
+
+
+
+
+            val estimatedateB =
+                bottomSheetDialog2.findViewById<EditText>(R.id.estimate_end_date_tv2)
+            startdateB?.setText(myListData.estimatedEndDate)
 
 
 

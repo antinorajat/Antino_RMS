@@ -3,6 +3,8 @@ package com.example.antinorms
 import com.example.antinorms.models.LoginReq
 import com.example.antinorms.models.LoginResponse
 import com.example.antinorms.models.Register.registerdata
+import com.example.antinorms.models.createproject.createProject
+import com.example.antinorms.models.createproject.createresp
 
 import com.example.antinorms.models.projectResp.ProjectResponse
 import com.example.antinorms.models.project_update.pro_update
@@ -44,6 +46,12 @@ interface ApiInterface {
         @Body registerdata: registerdata
     ): Call<registerresp>
 
+
+  @POST("/projects/add")
+  fun getData4(
+      @Header("Authorization") s: String,
+      @Body createProject: createProject
+  ):Call<createresp>
 
 
 }
