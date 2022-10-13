@@ -5,6 +5,7 @@ import com.example.antinorms.models.LoginResponse
 import com.example.antinorms.models.Register.registerdata
 import com.example.antinorms.models.createproject.createProject
 import com.example.antinorms.models.createproject.createresp
+import com.example.antinorms.models.createteam.*
 
 import com.example.antinorms.models.projectResp.ProjectResponse
 import com.example.antinorms.models.project_update.pro_update
@@ -20,6 +21,17 @@ interface ApiInterface {
     fun getData(@Header("Authorization") token: String): Call<MyDataClassForApi>
 
 
+    @POST("/teams/add-member")
+
+    fun teams(
+        @Header("Authorization") token: String,
+        @Body teamsresp: teamsresp ): Call<teamsresp>
+
+
+    @GET("teams/get-data")
+    fun getData5(@Header("Authorization") token: String): Call<response_teams>
+
+
     @PUT("developer/updateProfile/{devId}")
     fun updateDeveloper(
         @Header("Authorization") token: String,
@@ -31,7 +43,9 @@ interface ApiInterface {
     fun getData2(@Header("Authorization") token: String): Call<ProjectResponse>
 
     @POST("/auth/login")
-    fun login(@Body loginReq: LoginReq): Call<LoginResponse>
+    fun login(
+
+        @Body loginReq: LoginReq): Call<LoginResponse>
 
 //    @GET("role/getAllRoles")
 //    fun getData3(@Header("Authorization") token: String): Call<roledata>

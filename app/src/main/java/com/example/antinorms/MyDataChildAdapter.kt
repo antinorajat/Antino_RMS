@@ -83,6 +83,10 @@ class MyDataChildAdapter(val context: Context, val index :Int) :
             projectB?.setText(myListData.projects.toString())
 
 
+            val billableB=bottomSheetDialog.findViewById<EditText>(R.id.billable_tv3)
+            billableB?.setText(myListData.billable.toString())
+
+
 //
 //            val billableB=bottomSheetDialog.findViewById<EditText>(R.id.billable_tv12)
 //            billableB?.setText(myListData.)
@@ -107,6 +111,7 @@ class MyDataChildAdapter(val context: Context, val index :Int) :
                 techB?.isEnabled = false
                  groupB?.isEnabled=false
                 projectB?.isEnabled = false
+                billableB?.isEnabled = false
 
 
 
@@ -124,7 +129,8 @@ class MyDataChildAdapter(val context: Context, val index :Int) :
                designation = designationB?.text.toString(),
               remarks = "",
                reportingPm =  myListData.reportingPm?.name,
-               project = myListData.projects?.toString()
+               project = myListData.projects?.toString(),
+               billable = myListData.billable?.toString()
            )
                 Log.d("error", Gson().toJson(saveDevrequest))
                 try {
@@ -179,6 +185,7 @@ class MyDataChildAdapter(val context: Context, val index :Int) :
                 techB?.isEnabled = true
                 groupB?.isEnabled=true
                 projectB?.isEnabled = true
+                billableB?.isEnabled = true
 
             }
 

@@ -30,8 +30,14 @@ data class Data(
     @SerializedName("designation") var designation: designation? = null,
     @SerializedName("techStack") var techStack: TechStack? = null,
     @SerializedName("group") var group: group? = null,
+    @SerializedName("billable") var billable: billable? = null,
+
 
 
 
 
     )
+
+class billable {
+
+}

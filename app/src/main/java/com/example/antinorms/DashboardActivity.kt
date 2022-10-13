@@ -14,6 +14,7 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
         val firstFragment=BlankFragment()
         val secondFragment = BlankFragment3()
+        val third = Teams_Fragment()
 
         setCurrentFragment(firstFragment)
         token = intent.getStringExtra("token")
@@ -21,6 +22,7 @@ class DashboardActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.developer->setCurrentFragment(firstFragment)
                 R.id.project->setCurrentFragment(secondFragment)
+                R.id.teams->setCurrentFragment(third)
 
             }
             true
