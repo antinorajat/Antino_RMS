@@ -15,15 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antinorms.databinding.MyListAdapter3Binding
 import com.example.antinorms.models.Register.registerdata
-import com.example.antinorms.models.createteam.Data3
-import com.example.antinorms.models.createteam.response_teams
-import com.example.antinorms.models.createteam.status
-import com.example.antinorms.models.createteam.teamsresp
+import com.example.antinorms.models.createteam.*
+import com.example.antinorms.models.project_update.designation
 import com.example.antinorms.models.registerresp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.bottomsheet.*
 import kotlinx.android.synthetic.main.fragment_blank.view.*
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_teams_.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +38,7 @@ class Teams_Fragment : Fragment() {
     private var llParent: LinearLayout? = null
     private var bottomSheetDialog: BottomSheetDialog? = null
     private var searchView: EditText? = null
-    var filterdNames = mutableListOf<Data3>()
+    var filterdNames = mutableListOf<response_teams.Data?>()
     var list:List<response_teams.Data?> = arrayListOf()
     lateinit var myListAdapter3: MyDataChildAdapter3
 
@@ -55,16 +56,37 @@ class Teams_Fragment : Fragment() {
 
         setSearch()
 
+        view.imageView3.setOnClickListener {
+            bottomSheetDialog =
+                context?.let { it1 -> BottomSheetDialog(it1, R.style.CustomBottomSheetDialogTheme) }
+            bottomSheetDialog?.setContentView(R.layout.dialog3)
+            bottomSheetDialog?.behavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+
+            var fname = bottomSheetDialog?.findViewById<EditText>(R.id.edit4)
+            var email = bottomSheetDialog?.findViewById<EditText>(R.id.edit5)
+            var designation2 = bottomSheetDialog?.findViewById<EditText>(R.id.edit6)
+            var password = bottomSheetDialog?.findViewById<EditText>(R.id.edit7)
 
 
-        getMyData5()
+            bottomSheetDialog?.findViewById<Button>(R.id.btn_add)?.setOnClickListener {
+                val dataresp = dataresp(
+                    name = fname.toString(),
+                    email = email.toString(),
+                    designation = designation2.toString(),
+                    bodyPassword = password.toString()
+                )
+                getMyData5(dataresp)
+            }
+            bottomSheetDialog?.show()
+        }
+        getMyData5(dataresp())
 
 
         return view
     }
 
 
-    private fun getMyData5() {
+    private fun getMyData5(dataresp:dataresp) {
         rvData?.visibility = View.GONE
         progressBar?.visibility = View.VISIBLE
 
@@ -160,13 +182,13 @@ class Teams_Fragment : Fragment() {
 
             var temp = s?.name
             if (temp?.toLowerCase()?.contains(text.toLowerCase()) == true) {
-              //  filterdNames.add(s)
+                filterdNames.add(s)
 
             }
         }
 
         if (::myListAdapter3.isInitialized) {
-          //  myListAdapter3.addData(filterdNames)
+            myListAdapter3.addData(filterdNames)
         }
     }
 
