@@ -133,14 +133,13 @@
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit4"
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextview1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textCursorDrawable="@null"
-                    android:textSize="16sp" />
+                    android:padding = "12dp"
+                    android:inputType="none"
+                    android:textSize="16sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -156,14 +155,14 @@
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit5"
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextview2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textCursorDrawable="@null"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
+                    android:padding = "12dp"
+                    android:inputType="none"
+                    android:textSize="16sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -179,15 +178,14 @@
                 app:boxCornerRadiusTopEnd="10dp"
                 app:boxCornerRadiusTopStart="10dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit6"
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextview3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textCursorDrawable="@null"
-                    android:textSize="16sp"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    />
+                    android:padding = "12dp"
+                    android:inputType="none"
+                    android:textSize="16sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -257,8 +255,9 @@
                     android:layout_height="wrap_content"
                     android:textCursorDrawable="@null"
                     android:maxLines="1"
+
                     android:singleLine="true"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -290,13 +289,6 @@
 
 
 
-
-
-
-
-
-
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
@@ -304,8 +296,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20sp"
-                android:backgroundTint="#49C5B6"
+                android:backgroundTint="#000000"
                 android:text="REGISTER"
+
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"

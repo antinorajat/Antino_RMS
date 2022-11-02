@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".BlankFragment">
-
-
-
     <RelativeLayout
-        android:id="@+id/searchBar1"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        android:id="@+id/searchBar5"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="0dp"
         android:layout_height="48dp"
         >
-
         <EditText
-            android:id="@+id/et_search1"
+            android:id="@+id/et_search3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_toRightOf="@+id/img_search1"
+            android:layout_toRightOf="@+id/img_search"
             android:background="@null"
             android:hint="Search"
             android:inputType="text"
@@ -34,9 +30,8 @@
             android:textAllCaps="false"
             android:textColor="#4A4A4A"
             android:textColorHint="#4A4A4A" />
-
         <ImageView
-            android:id="@+id/img_search1"
+            android:id="@+id/img_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -47,90 +42,83 @@
             app:tint="#7E7E8C"
             tools:ignore="VectorDrawableCompat" />
     </RelativeLayout>
-
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:padding="12dp"
         android:src="@drawable/ic_baseline_add_circle_24"
-        app:layout_constraintBottom_toBottomOf="@+id/searchBar1"
+        app:layout_constraintBottom_toBottomOf="@+id/searchBar5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/searchBar1" />
-
-
+        app:layout_constraintTop_toTopOf="@+id/searchBar5"
+        app:layout_constraintVertical_bias="0.0" />
     <LinearLayout
+        android:id="@+id/llParent3"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        
-        android:paddingVertical="15dp"
-        android:id="@+id/llParent"
+        android:layout_height="wrap_content"
         android:background="#000000"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        android:paddingVertical="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar1"
-        android:layout_height="wrap_content">
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBar5">
         <TextView
-            android:id="@+id/txt1"
+            android:id="@+id/txt4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="16sp"
+            android:gravity="left"
             android:textColor="#FFFFFF"
-            android:text="Project name"
-            android:layout_marginStart="20dp"/>
-
+            android:text="Group Name"
+            android:textSize="16sp"
+            android:textStyle="bold" />
         <TextView
-            android:id="@+id/txt2"
+            android:id="@+id/txt5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="left"
+            android:layout_marginStart="20dp"
             android:layout_weight="1"
             android:textColor="#FFFFFF"
+            android:gravity="left"
+            android:text="Assigned PM "
             android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txt6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:textColor="#FFFFFF"
             android:text="Developers"
-            android:layout_marginStart="20dp"/>
-
-        <TextView
-            android:id="@+id/txt3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:gravity="left"
-            android:layout_weight="1"
-            android:textColor="#FFFFFF"
             android:textSize="16sp"
-            android:text="Client name"
-            android:layout_marginStart="20dp"/>
-
-
+            android:textStyle="bold" />
     </LinearLayout>
-
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:id="@+id/recyclerView3"
         android:layout_width="match_parent"
-        tools:listitem="@layout/row"
+        android:layout_height="0dp"
         android:layout_marginBottom="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llParent"
-        android:layout_height="wrap_content"
-        android:visibility="visible"/>
+        android:visibility="visible"
 
-    <ProgressBar
-        android:visibility="gone"
-        android:id="@+id/progresBar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llParent3"
+        tools:listitem="@layout/row3" />
+
+    <ProgressBar
+        android:id="@+id/progresBar4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

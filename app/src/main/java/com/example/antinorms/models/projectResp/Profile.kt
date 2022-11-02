@@ -10,7 +10,7 @@ data class Profile(
     val developers: List<Developer>,
     val estimatedEndDate: String,
     val internalMeetingDaysAndTimings: String,
-    val projectManager: ProjectManager,
+    val projectManager: ProjectManager?,
     val projectName: String,
     val startDate: String,
     val status: String,

@@ -15,7 +15,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antinorms.models.Register.registerdata
+import com.example.antinorms.models.getdesignation.getdesignationresp
 import com.example.antinorms.models.registerresp
+import com.example.antinorms.models.role
+import com.example.antinorms.models.teckstack.techresp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
@@ -25,6 +28,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class BlankFragment : Fragment() {
@@ -37,6 +41,14 @@ class BlankFragment : Fragment() {
     var filterdNames = mutableListOf<Data>()
     var list = mutableListOf<Data>()
     lateinit var myListAdapter : MyDataChildAdapter
+    var autoCompleteTextView: AutoCompleteTextView?=null
+     var arr1: ArrayList<String> = ArrayList()
+    var autoCompleteTextView2: AutoCompleteTextView?=null
+    var arr2: ArrayList<String> = ArrayList()
+    var autoCompleteTextView3: AutoCompleteTextView?=null
+    var arr3: ArrayList<String> = ArrayList()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,31 +57,42 @@ class BlankFragment : Fragment() {
         // Inflate the layout for this fragment
 
         var view = inflater.inflate(R.layout.fragment_blank, container, false)
+        bottomSheetDialog = BottomSheetDialog(view.context, R.style.CustomBottomSheetDialogTheme)
+
         rvData = view.findViewById(R.id.recyclerView)
         progressBar = view.findViewById(R.id.progresBar)
         llParent = view.findViewById(R.id.llParent)
         searchView = view.findViewById(R.id.et_search)
-
         setSearch()
 
-
         view.imageView1.setOnClickListener {
-            bottomSheetDialog =
-                context?.let { it1 -> BottomSheetDialog(it1, R.style.CustomBottomSheetDialogTheme) }
             bottomSheetDialog?.setContentView(R.layout.dialog)
             bottomSheetDialog?.behavior?.state = BottomSheetBehavior.STATE_HALF_EXPANDED
             var firstname = bottomSheetDialog?.findViewById<EditText>(R.id.edit)
             var lastname = bottomSheetDialog?.findViewById<EditText>(R.id.edit1)
             var email = bottomSheetDialog?.findViewById<EditText>(R.id.edit2)
             var dateJoining = bottomSheetDialog?.findViewById<EditText>(R.id.edit3)
-            var designation = bottomSheetDialog?.findViewById<EditText>(R.id.edit4)
-            var role = bottomSheetDialog?.findViewById<EditText>(R.id.edit5)
-            var techstack = bottomSheetDialog?.findViewById<EditText>(R.id.edit6)
+            var designation = bottomSheetDialog?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextview1)
+            var role = bottomSheetDialog?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextview2)
+            var techstack = bottomSheetDialog?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextview3)
             var MobileNumber = bottomSheetDialog?.findViewById<EditText>(R.id.edit7)
             var emergencyContact = bottomSheetDialog?.findViewById<EditText>(R.id.edit8)
             var antinoId = bottomSheetDialog?.findViewById<EditText>(R.id.edit9)
             var workingexperincemonth = bottomSheetDialog?.findViewById<EditText>(R.id.edit10)
 
+            designation?.setOnClickListener {
+                getdesignation()
+            }
+
+            role?.setOnClickListener {
+                getrole()
+
+            }
+
+            techstack?.setOnClickListener {
+                gettech()
+
+            }
             var  c:Calendar = Calendar.getInstance();
             var year = c.get(Calendar.YEAR);
           var month = c.get(Calendar.MONTH);
@@ -86,14 +109,12 @@ class BlankFragment : Fragment() {
                 )
                 datePickerDialog.show()}
 
-
-
             bottomSheetDialog?.findViewById<Button>(R.id.btn_register)?.setOnClickListener {
                 val registerdata = registerdata(
                     firstName = firstname?.text.toString(),
                     lastName = lastname?.text.toString(),
                     email = email?.text.toString(),
-                    joiningDate = dateJoining?.text.toString(),
+                    joiningDate = dateJoining?.text.toString().replace("/",""),
                     designation = designation?.text.toString(),
                     role = role?.text.toString(),
                     techStack = techstack?.text.toString(),
@@ -107,18 +128,9 @@ class BlankFragment : Fragment() {
             }
             bottomSheetDialog?.show()
 
-
-            /*bottomSheetDialog?.behavior?.maxHeight = 1000
-            bottomSheetDialog?.behavior?.peekHeight = 400*/
-
         }
 
         getMyData()
-
-
-
-
-
 
         return view
     }
@@ -140,6 +152,7 @@ class BlankFragment : Fragment() {
             ) {
 
                 if (response.isSuccessful) {
+
                     /*val adapter = response.body()?.let {it-> MyListAdapter(requireActivity(),it.data) }
                     rvData?.adapter = adapter
 */
@@ -147,7 +160,7 @@ class BlankFragment : Fragment() {
                     bottomSheetDialog?.dismiss()
                     getMyData()
 
-                    Log.e("response", "${response.body()?.message}")
+                    Log.e("responjhhhhse", "${response.body()}")
 
                 } else {
                     Toast.makeText(requireContext(), "${response.body().toString()}", Toast.LENGTH_SHORT).show()
@@ -155,7 +168,7 @@ class BlankFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<registerresp?>, t: Throwable) {
-                Log.d("MainActivity", "onFailure: " + t.message)
+                Log.d("MainActivity", "onFailure: " + call.request()+"---"+t.message)
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
 
@@ -166,6 +179,151 @@ class BlankFragment : Fragment() {
 
     }
 
+
+    private fun getdesignation() {
+        rvData?.visibility = View.GONE
+        progressBar?.visibility = View.VISIBLE
+
+        val retrofitData =
+            DashboardActivity.token?.let {
+
+                RetrofitService.networkCall().getdesignation("Bearer $it")
+            }
+
+
+        retrofitData?.enqueue(object : Callback<getdesignationresp?> {
+            override fun onResponse(
+                call: Call<getdesignationresp?>,
+                response: Response<getdesignationresp?>
+            ) {
+                Log.e("response", "hbuhbi ${call.request()} ${response.isSuccessful}")
+
+                if (response.isSuccessful) {
+                    progressBar?.visibility = View.GONE
+                    Log.e("response", "${response.body()?.data?.size}")
+
+                    for(i in response.body()?.data!!){
+                        arr1.add(i?.name!!)
+                    }
+                    var adapter = ArrayAdapter<String>(context!!, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,arr1)
+                    autoCompleteTextView = bottomSheetDialog?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextview1)
+                    autoCompleteTextView?.setAdapter(adapter)
+
+                    autoCompleteTextView?.showDropDown()
+
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<getdesignationresp?>, t: Throwable) {
+                Log.d("MainActivity", "onFailure: " + t.message)
+                Log.e("response", "onfailre ${t.message}")
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
+
+
+    }
+
+    private fun getrole() {
+        rvData?.visibility = View.GONE
+        progressBar?.visibility = View.VISIBLE
+
+        val retrofitData =
+            DashboardActivity.token?.let {
+
+                RetrofitService.networkCall().getrole("Bearer $it")
+            }
+
+
+        retrofitData?.enqueue(object : Callback<role?> {
+            override fun onResponse(
+                call: Call<role?>,
+                response: Response<role?>
+            ) {
+                Log.e("response", "hbuhbi ${call.request()} ${response.isSuccessful}")
+
+                if (response.isSuccessful) {
+                    progressBar?.visibility = View.GONE
+                    Log.e("response", "${response.body()?.data?.size}")
+
+                    for(i in response.body()?.data!!){
+                        arr1.add(i?.name!!)
+                    }
+                    var adapter = ArrayAdapter<String>(context!!, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,arr1)
+                    autoCompleteTextView = bottomSheetDialog?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextview2)
+                    autoCompleteTextView?.setAdapter(adapter)
+
+                    autoCompleteTextView?.showDropDown()
+
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<role?>, t: Throwable) {
+                Log.d("MainActivity", "onFailure: " + t.message)
+                Log.e("response", "onfailre ${t.message}")
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
+
+
+    }
+
+
+    private fun gettech() {
+        rvData?.visibility = View.GONE
+        progressBar?.visibility = View.VISIBLE
+
+        val retrofitData =
+            DashboardActivity.token?.let {
+
+                RetrofitService.networkCall().gettech("Bearer $it")
+            }
+        retrofitData?.enqueue(object : Callback<techresp?> {
+            override fun onResponse(
+                call: Call<techresp?>,
+                response: Response<techresp?>
+            ) {
+                Log.e("response", "hbuhbi ${call.request()} ${response.isSuccessful}")
+
+                if (response.isSuccessful) {
+                    progressBar?.visibility = View.GONE
+                    Log.e("response", "${response.body()?.data?.size}")
+
+                    for(i in response.body()?.data!!){
+                        arr1.add(i?.name!!)
+                    }
+                    var adapter = ArrayAdapter<String>(context!!, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,arr1)
+                    autoCompleteTextView = bottomSheetDialog?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextview3)
+                    autoCompleteTextView?.setAdapter(adapter)
+
+                    autoCompleteTextView?.showDropDown()
+
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<techresp?>, t: Throwable) {
+                Log.d("MainActivity", "onFailure: " + t.message)
+                Log.e("response", "onfailre ${t.message}")
+                progressBar?.visibility = View.GONE
+                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
+
+    }
 
     private fun getMyData() {
         list.clear()
@@ -222,7 +380,9 @@ class BlankFragment : Fragment() {
         val layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         rvData?.layoutManager = layoutManager
-        myListAdapter = MyDataChildAdapter(requireContext(), 0)
+        myListAdapter = MyDataChildAdapter(requireContext(), 0){
+            getMyData()
+        }
         rvData?.adapter = myListAdapter
 
     }

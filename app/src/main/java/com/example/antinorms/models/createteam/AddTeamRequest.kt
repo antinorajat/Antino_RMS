@@ -2,7 +2,7 @@ package com.example.antinorms.models.createteam
 
 import com.google.gson.annotations.SerializedName
 
-data class teams(
+data class AddTeamRequest(
 
     @SerializedName("name") var name: String? = null,
     @SerializedName("email") var email: String? = null,

@@ -6,5 +6,6 @@ data class ProjectManager(
     val designation: String,
     val email: String,
     val group_id: Any,
-    val name: String
+    val name: String,
+
 )

@@ -2,11 +2,12 @@ package com.example.antinorms.models.createteam
 
 import com.google.gson.annotations.SerializedName
 
-data class teamsresp (
+data class teamsresp(
 
-    @SerializedName("index"      ) var index      : Int?        = null,
-    @SerializedName("code"       ) var code       : Int?        = null,
-    @SerializedName("keyPattern" ) var keyPattern : KeyPattern? = KeyPattern(),
-    @SerializedName("keyValue"   ) var keyValue   : KeyValue?   = KeyValue()
+
+    @SerializedName("status"  ) var status  : String? = null,
+    @SerializedName("message" ) var message : String? = null,
+    @SerializedName("data"    ) var data    : response_teams.Data?
+
 
 )

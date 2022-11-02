@@ -38,4 +38,11 @@
     <style name="simpletooltip_default" parent="@android:style/TextAppearance.Medium"></style>
 
 
+
+    <style name="LangList_SpinnerPopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <!-- border width -->  <item name="android:padding">1dp</item>
+        <!-- border color -->  <item name="android:background">#f00</item>
+    </style>
+
+
 </resources>

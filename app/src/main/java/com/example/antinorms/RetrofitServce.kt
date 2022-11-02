@@ -16,6 +16,7 @@ object RetrofitService {
     private var network =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

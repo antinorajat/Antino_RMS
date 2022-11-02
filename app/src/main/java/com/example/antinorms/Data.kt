@@ -22,7 +22,7 @@ data class Data(
     @SerializedName("phoneNumber") var phoneNumber: String? = null,
     @SerializedName("emergencyContactNumber") var emergencyContactNumber: String? = null,
     @SerializedName("empId") var empId: String? = null,
-    @SerializedName("isAvailable") var isAvailable: Boolean? = null,
+    @SerializedName("isAvailable") var isAvailable: String?=null,
     @SerializedName("createdAt") var createdAt: String? = null,
     @SerializedName("updatedAt") var updatedAt: String? = null,
     @SerializedName("reportingPm") var reportingPm: ReportingPm? = ReportingPm(),

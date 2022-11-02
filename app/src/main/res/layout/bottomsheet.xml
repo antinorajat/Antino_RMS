@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -410,13 +410,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/role_tv"
                 app:layout_constraintTop_toTopOf="@+id/role_tv" >
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/role_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:textSize="15sp"
                     android:enabled="false"
+                    android:focusable="false"
+                    android:dropDownWidth="150dp"
                     android:singleLine="true"
                     android:textStyle="bold"/>
 
@@ -451,13 +453,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/designation_tv"
                 app:layout_constraintTop_toTopOf="@+id/designation_tv" >
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/designation_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:textSize="15sp"
                     android:enabled="false"
+                    android:focusable="false"
+                    android:dropDownWidth="350dp"
                     android:singleLine="true"
                     android:textStyle="bold"/>
 
@@ -466,45 +470,7 @@
 
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
 
-            android:id="@+id/tech_parent_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/tech_tv"
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="TechStack"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                app:layout_constraintBottom_toBottomOf="@+id/tech_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tech_tv"
-                app:layout_constraintTop_toTopOf="@+id/tech_tv" >
-                <EditText
-                    android:id="@+id/tech_tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textSize="15sp"
-                    android:enabled="false"
-                    android:singleLine="true"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -533,18 +499,69 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/group_tv"
                 app:layout_constraintTop_toTopOf="@+id/group_tv" >
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/group_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:textSize="15sp"
                     android:enabled="false"
+                    android:focusable="false"
+                    android:dropDownWidth="150dp"
                     android:singleLine="true"
                     android:textStyle="bold"/>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/group_tech_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tech_tv"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TechStack"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                app:layout_constraintBottom_toBottomOf="@+id/tech_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tech_tv"
+                app:layout_constraintTop_toTopOf="@+id/tech_tv" >
+                <AutoCompleteTextView
+                    android:id="@+id/tech_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:textSize="15sp"
+                    android:focusable="false"
+                    android:dropDownWidth="150dp"
+                    android:enabled="false"
+                    android:singleLine="true"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -643,20 +660,23 @@
 
 
 
+
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
 
-            android:id="@+id/bilable_parent_layout"
+            android:id="@+id/isfresher_parent_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="58dp"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/billable_tv1"
-                android:textSize="15sp"
+                android:id="@+id/isfresher_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Billable"
+                android:text="isFresher"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -666,19 +686,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                app:layout_constraintBottom_toBottomOf="@+id/billable_tv1"
+                app:layout_constraintBottom_toBottomOf="@+id/isfresher_tv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/billable_tv1"
-                app:layout_constraintTop_toTopOf="@+id/billable_tv1" >
+                app:layout_constraintStart_toEndOf="@+id/isfresher_tv"
+                app:layout_constraintTop_toTopOf="@+id/isfresher_tv">
+
                 <EditText
-                    android:id="@+id/billable_tv12"
+                    android:id="@+id/isfresher_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textSize="15sp"
                     android:enabled="false"
+                    android:gravity="end"
                     android:singleLine="true"
-                    android:textStyle="bold"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -691,79 +712,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-
-            android:id="@+id/billable_parent_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/billable_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Billable"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                app:layout_constraintBottom_toBottomOf="@+id/billable_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/billable_tv"
-                app:layout_constraintTop_toTopOf="@+id/billable_tv" >
-                <EditText
-                    android:id="@+id/billable_tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:textSize="15sp"
-                    android:enabled="false"
-                    android:singleLine="true"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-           </LinearLayout>
+    </LinearLayout>
 
 <!--    </androidx.core.widget.NestedScrollView>-->
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>
