@@ -220,8 +220,6 @@ class Teams_Fragment : Fragment() {
             myListAdapter3.addData(filterdNames)
         }
     }
-
-
 }
 
 

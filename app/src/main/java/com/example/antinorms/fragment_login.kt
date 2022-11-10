@@ -31,9 +31,7 @@ class fragment_login : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
-
     private lateinit var _binding: FragmentLoginBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,11 +50,9 @@ class fragment_login : Fragment() {
                 }
             }
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("MySharedPref", MODE_PRIVATE)
-
         _binding.loginButton.setOnClickListener {
             val email = _binding.etEmail.text.toString()
             val password = _binding.etpassword.text.toString()

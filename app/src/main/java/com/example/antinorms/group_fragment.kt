@@ -7,20 +7,16 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import android.widget.AdapterView.OnItemClickListener
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.antinorms.models.*
-import com.example.antinorms.models.createteam.AddTeamRequest
-import com.example.antinorms.models.createteam.AddTeamResponse
-import com.example.antinorms.models.createteam.response_teams
-import com.example.antinorms.models.getdesignation.getdesignationresp
 import com.example.antinorms.sharedPreference.MyDataChildAdapter4
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_teams_.view.*
@@ -41,7 +37,8 @@ class group_fragment : Fragment() {
     private var param2: String? = null
     private var bottomSheetDialog: BottomSheetDialog? = null
     lateinit var myListAdapter4: MyDataChildAdapter4
-    private var listOfManagers = arrayListOf<String>()
+    private var listOfManagers = HashMap<String,String>()
+    var mentorId=""
     var filterdNames = mutableListOf<group_res.Data>()
     private var searchView: EditText? = null
     lateinit var AddgroupRequest: groupRequest
@@ -67,7 +64,6 @@ class group_fragment : Fragment() {
         bottomSheetDialog =
             context?.let { it1 -> BottomSheetDialog(it1, R.style.CustomBottomSheetDialogTheme) }
         bottomSheetDialog?.setContentView(R.layout.dialog4)
-
         manager  = bottomSheetDialog?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextviewSpinner2)!!
         bottomSheetDialog?.findViewById<Button>(R.id.btn_add)?.setOnClickListener {
             var fname = bottomSheetDialog?.findViewById<EditText>(R.id.edit4)?.text
@@ -75,10 +71,10 @@ class group_fragment : Fragment() {
             val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences("MySharedPref",
                 Context.MODE_PRIVATE
             )
-            AddgroupRequest = groupRequest(groupName= fname.toString(), sharedPreferences.getString("userId",""))
+            AddgroupRequest = groupRequest(groupName= fname.toString(),mentorId)
             Log.e("flowCheck1", "0 ${Gson().toJson(AddgroupRequest)}")
             Log.e("userId--->", "0 ${sharedPreferences.getString("userId","")}")
-            addTamAPiCall()
+            addGoupAPiCall()
 
         }
         setSearch()
@@ -102,9 +98,7 @@ class group_fragment : Fragment() {
         list.clear()
         rvData?.visibility = View.GONE
         progressBar?.visibility = View.VISIBLE
-
         val retrofitData = DashboardActivity.token?.let {
-
             RetrofitService.networkCall().getData6("Bearer $it")
         }
         retrofitData?.enqueue(object : Callback<group_res?> {
@@ -116,13 +110,25 @@ class group_fragment : Fragment() {
                 if (response.isSuccessful) {
                     progressBar?.visibility = View.GONE
                     listOfManagers.clear()
-                    listOfManagers.addAll(response.body()?.data?.map { it.mentor?.name }?.distinct() as ArrayList<String>)
-                    var adapter = ArrayAdapter(requireContext(),
-                        androidx.appcompat.R.layout.select_dialog_item_material,listOfManagers)
+                    response.body()?.data?.forEach {
+                        listOfManagers[it.mentor?._id?:""] = it.mentor?.name?:""
+                    }
+
+                    for (i in listOfManagers.keys){
+                        Log.d("SHOW_VALUE", "onResponse:$i")
+                    }
+
+                    var adapter = ArrayAdapter(
+                        requireContext(),
+                        androidx.appcompat.R.layout.select_dialog_item_material, listOfManagers.values.toList()
+                    )
                     manager.setAdapter(adapter)
-                    manager.setOnClickListener{
+                    manager.setOnClickListener {
                         manager.showDropDown()
                     }
+                    manager.setOnItemClickListener(OnItemClickListener { parent, arg1, pos, id ->
+                       mentorId = listOfManagers.keys.toList()[pos]
+                    })
                     setUpAdapter()
                     list.clear()
                     list.addAll(response.body()!!.data as MutableList<group_res.Data>)
@@ -137,16 +143,16 @@ class group_fragment : Fragment() {
                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
 
             }
-
         })
 
     }
-    fun addTamAPiCall(){
+    fun addGoupAPiCall(){
         rvData?.visibility = View.GONE
         progressBar?.visibility = View.VISIBLE
         val retrofitData =
             DashboardActivity.token?.let {
                 RetrofitService.networkCall().addgroup("Bearer $it",AddgroupRequest)
+
             }
 
 
@@ -161,27 +167,20 @@ class group_fragment : Fragment() {
                 Log.e("flowCheck", "8 : ${Gson().toJson(response.body())}")
 
 //                if (response.code() == 201) {
-                    Log.e("flowCheck", "4 : ${response.body()}")
+                Log.e("flowCheck", "4 : ${response.body()}")
                     bottomSheetDialog?.hide()
                     Toast.makeText(requireContext(), "${response.body()?.message}", Toast.LENGTH_SHORT).show()
                     getMyData6()
-
-
             }
-
             override fun onFailure(call: Call<GroupAdd?>, t: Throwable) {
                 Log.e("flowCheck", "4 : ")
                 progressBar?.visibility = View.GONE
                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
-
             }
         })
     }
-
-    private fun setUpAdapter() {
-
+     private fun setUpAdapter() {
         Log.d("TeamsFragment", "setUpAdapter: ${Gson().toJson(list)}")
-
         rvData?.visibility = View.VISIBLE
         val layoutManager =
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
@@ -190,7 +189,6 @@ class group_fragment : Fragment() {
         rvData?.adapter = myListAdapter4
 
     }
-
 
     private fun setSearch() {
         searchView?.addTextChangedListener(object : TextWatcher {
@@ -224,9 +222,6 @@ class group_fragment : Fragment() {
             myListAdapter4.addData(filterdNames)
         }
     }
-
-
-
     private fun getgroupdata() {
         list.clear()
         rvData?.visibility = View.GONE
@@ -263,10 +258,6 @@ class group_fragment : Fragment() {
         })
 
     }
-
-
-
-
 
 }
 

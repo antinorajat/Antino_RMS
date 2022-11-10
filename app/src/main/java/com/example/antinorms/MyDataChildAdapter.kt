@@ -79,12 +79,6 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
             val roleB = bottomSheetDialog.findViewById<AutoCompleteTextView>(R.id.role_tv2)
             roleB?.setText(myListData.Role?.name)
             roleB?.setOnClickListener {
-//
-//                val adapter: ArrayAdapter<String> = ArrayAdapter<String>(holder.textView1.context, android.R.layout.select_dialog_item, listOf("A","B"))
-//                roleB.threshold = 1 //will start working from first character
-//
-//                roleB.setAdapter(adapter) //setting the adapter data into the AutoCompleteTextView
-//                roleB.showDropDown()
 
                 try {
                     val retrofitData = DashboardActivity.token?.let {
@@ -134,7 +128,6 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
 
                 }
             }
-
 
             val designationB = bottomSheetDialog.findViewById<AutoCompleteTextView>(R.id.designation_tv2)
             designationB?.setText(myListData.designation?.name)
@@ -189,11 +182,8 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
                 }
             }
 
-
-
             val techB = bottomSheetDialog.findViewById<AutoCompleteTextView>(R.id.tech_tv2)
             techB?.setText(myListData.techStack?.name)
-
             techB?.setOnClickListener {
 
                 try {
@@ -245,13 +235,10 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
                 }
             }
 
-
-
             val groupB = bottomSheetDialog.findViewById<AutoCompleteTextView>(R.id.group_tv2)
             groupB?.setText(myListData.group?.name ?: "null")
 
             groupB?.setOnClickListener {
-
                 try {
                     val retrofitData = DashboardActivity.token?.let {
                         RetrofitService.networkCall().getgroup("Bearer $it")
@@ -264,7 +251,6 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
                             Log.d("MyDataChildAdapter", "Response Code: ${response.code()}")
                             Log.d("MyDataChildAdapter", "Response Body:${response.body()}")
                             if (response.isSuccessful) {
-
                                 val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
                                     holder.textView1.context,
                                     android.R.layout.select_dialog_item,
@@ -272,7 +258,6 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
                                 )
                                 groupB.setAdapter(adapter) //setting the adapter data into the AutoCompleteTextView
                                 groupB.showDropDown()
-
                                 groupB.onItemClickListener =
                                     OnItemClickListener { parent, arg1, pos, id ->
                                        group= response.body()?.data?.get(pos)?._id ?:""
@@ -293,7 +278,6 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
 
                     })
 
-
                 } catch (e: Exception) {
                     Toast.makeText(context, "Some error occurred! ${e.message}", Toast.LENGTH_SHORT)
                         .show()
@@ -301,18 +285,11 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
                 }
             }
 
-
-
-
-
-
             val projectB = bottomSheetDialog.findViewById<EditText>(R.id.project_tv2)
             projectB?.setText(myListData.projects.toString())
 
-
             val billableB = bottomSheetDialog.findViewById<EditText>(R.id.billable_tv3)
             billableB?.setText(myListData.billable.toString())
-
 
             val isfresherB = bottomSheetDialog.findViewById<EditText>(R.id.isfresher_tv2)
             isfresherB?.setText(myListData.isFresher.toString())
@@ -371,7 +348,6 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
                                 "Bearer $it", devId = myListData.Id!!,
                                 saveDevrequest
                             )
-
 
                         }
                     retrofitData?.enqueue(object : retrofit2.Callback<SaveDevRes> {
@@ -445,7 +421,6 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
             }
             2 -> {
 
-
                 holder.textView1.text = myListData.isAvailable.toString()
 
             }
@@ -464,7 +439,6 @@ class MyDataChildAdapter(val context: Context, val index: Int,var returnCallBack
     }
 
     inner class ViewHolder(val binding: RowBinding) : RecyclerView.ViewHolder(binding.root) {
-
         var textView1: TextView = binding.txt1
         var textView2: TextView = binding.txt2
         var textView3: TextView = binding.txt3

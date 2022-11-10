@@ -122,12 +122,10 @@ class BlankFragment : Fragment() {
                     emergencyContactNumber = emergencyContact?.text.toString(),
                     empId = antinoId?.text.toString(),
                     workingExperienceInMonths = Integer.parseInt(workingexperincemonth?.text.toString())
-
                 )
                 getMyData3(registerdata)
             }
             bottomSheetDialog?.show()
-
         }
 
         getMyData()
@@ -181,7 +179,7 @@ class BlankFragment : Fragment() {
 
 
     private fun getdesignation() {
-        rvData?.visibility = View.GONE
+//        rvData?.visibility = View.GONE
         progressBar?.visibility = View.VISIBLE
 
         val retrofitData =
@@ -230,7 +228,7 @@ class BlankFragment : Fragment() {
     }
 
     private fun getrole() {
-        rvData?.visibility = View.GONE
+//        rvData?.visibility = View.GONE
         progressBar?.visibility = View.VISIBLE
 
         val retrofitData =
@@ -280,7 +278,7 @@ class BlankFragment : Fragment() {
 
 
     private fun gettech() {
-        rvData?.visibility = View.GONE
+//        rvData?.visibility = View.GONE
         progressBar?.visibility = View.VISIBLE
 
         val retrofitData =

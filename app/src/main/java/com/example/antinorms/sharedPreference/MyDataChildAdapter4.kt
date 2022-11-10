@@ -21,18 +21,12 @@ class MyDataChildAdapter4(val context: Context) :
         viewType: Int
     ): ViewHolder {
 
-
         val binding3 = Row4Binding.inflate(LayoutInflater.from(context),parent, false)
         return ViewHolder(binding3)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val myListData1 = list?.get(position)
-//        Log.d(
-//            "kfmjkdm", "${ myListData1?.toString()}" )
-
         holder.textView1.setPaintFlags(holder.textView1.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
-
         holder.textView1.text = myListData1?.group_name.toString()
         holder.textView2.text = myListData1?.mentor?.name
         holder.textView3.text = myListData1?.Developers?.size.toString()
@@ -42,7 +36,6 @@ class MyDataChildAdapter4(val context: Context) :
     }
 
     override fun getItemCount(): Int {
-
         return list!!.size
     }
 
@@ -52,24 +45,12 @@ class MyDataChildAdapter4(val context: Context) :
         notifyDataSetChanged()
     }
 
-
-//    fun addTeam2(serviceList1 : List<teams?>?) {
-//        list1= serviceList1
-//        notifyDataSetChanged()
-//    }
-
-
-
-
-
     inner class ViewHolder( val binding3: Row4Binding) : RecyclerView.ViewHolder(binding3.root) {
-
         var textView1: TextView = binding3.txt7
         var textView2: TextView = binding3.txt8
         var textView3: TextView = binding3.txt9
 
     }
 
-
-}
+    }
 

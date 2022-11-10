@@ -417,7 +417,6 @@
                     android:gravity="end"
                     android:textSize="15sp"
                     android:enabled="false"
-                    android:focusable="false"
                     android:dropDownWidth="150dp"
                     android:singleLine="true"
                     android:textStyle="bold"/>

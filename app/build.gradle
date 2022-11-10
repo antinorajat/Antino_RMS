@@ -7,14 +7,23 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
+        configurations.all {
+            resolutionStrategy {
+//                force 'androidx.appcompat:appcompat:1.2.0'
+                force 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
+                force 'androidx.core:core-ktx:1.6.0'
+            }
+        }
+
         applicationId "com.example.antinorms"
         minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

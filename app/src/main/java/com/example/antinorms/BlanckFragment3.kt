@@ -206,7 +206,6 @@ class BlankFragment3 : Fragment(){
 
 
     private fun gettech() {
-        rvData2?.visibility = View.GONE
         progressBar2?.visibility = View.VISIBLE
 
         val retrofitData =

@@ -99,13 +99,6 @@ class Dasboard : Fragment() {
 
     }
 
-
-
-
-
-
-
-
     private fun getMyData() {
         val retrofitData =
             DashboardActivity.token?.let {
@@ -147,8 +140,6 @@ class Dasboard : Fragment() {
             }
 
         })
-
-
     }
 
 //    private fun setUpAdapter() {
@@ -171,16 +162,6 @@ class Dasboard : Fragment() {
 //        rvData?.adapter = myListAdapter
 //
 //    }
-
-
-
-
-
-
-
-
-
-
 
 
 
